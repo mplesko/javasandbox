@@ -4,8 +4,6 @@ public class MyStackLink {
 
 	private Node node;
 
-//	public MyStackLink() {}
-
 	public int getSize() {
 		return getSize(node);
 	}
@@ -43,10 +41,6 @@ public class MyStackLink {
 		}		
 	}
 	
-	private boolean isEmpty() {
-		return node == null;
-	}
-
 	class Node {
 		Object item;
 		
