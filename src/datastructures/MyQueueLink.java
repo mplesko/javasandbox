@@ -1,6 +1,6 @@
 package datastructures;
 
-public class MyStackLink {
+public class MyQueueLink {
 
 	private Node node;
 
@@ -17,9 +17,8 @@ public class MyStackLink {
 	public int getNumberOfElements() {
 		return getSize();
 	}
-
-
-	public Object top() {
+	
+	public Object front() {
 		if (node == null) {
 			return null;
 		} else {
@@ -27,13 +26,25 @@ public class MyStackLink {
 		}
 	}
 	
-	public void push(Object obj) {
+	public void enqueue(Object obj) {
 		Node newNode = new Node(obj);
-		newNode.nodeLink = this.node;
-		this.node = newNode;
+		
+		if (this.node == null) {
+			this.node = newNode;
+		} else {
+			Node endNode = getEndNode(this.node);
+			endNode.nodeLink = newNode;
+		}
 	}
 	
-	public void pop() {
+	public Node getEndNode(Node node) {
+		if (node.nodeLink == null) {
+			return node;
+		}
+		return getEndNode(node.nodeLink);
+	}
+	
+	public void dequeue() {
 		if (node == null) {
 			return;
 		} else {
@@ -51,4 +62,5 @@ public class MyStackLink {
 			nodeLink = null;
 		}
 	}
+
 }
