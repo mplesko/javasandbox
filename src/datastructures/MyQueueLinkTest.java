@@ -121,4 +121,52 @@ public class MyQueueLinkTest extends TestCase {
 		assertNull(myQueueLink.front());
 	}
 
+	public void testMyQueueLinkCircular() {
+		MyQueueLinkCircular myQueueLink = new MyQueueLinkCircular();
+		assertNull(myQueueLink.front());
+		
+		myQueueLink.dequeue();
+		
+		myQueueLink.enqueue("one");
+		assertEquals("one", myQueueLink.front());
+		
+		myQueueLink.enqueue("two");
+		assertEquals("one", myQueueLink.front());
+
+		myQueueLink.enqueue("three");
+		assertEquals("one", myQueueLink.front());
+
+		myQueueLink.enqueue("four");
+		assertEquals("one", myQueueLink.front());
+
+		myQueueLink.dequeue();
+		assertEquals("two", myQueueLink.front());
+
+		myQueueLink.dequeue();
+		assertEquals("three", myQueueLink.front());
+		
+		myQueueLink.dequeue();
+		assertEquals("four", myQueueLink.front());
+
+		myQueueLink.enqueue("one");
+		myQueueLink.enqueue("two");
+		myQueueLink.enqueue("three");
+		myQueueLink.dequeue();
+		myQueueLink.enqueue("four");
+		assertEquals("one", myQueueLink.front());
+		
+		myQueueLink.dequeue();
+		assertEquals("two", myQueueLink.front());
+		myQueueLink.dequeue();
+		assertEquals("three", myQueueLink.front());
+		myQueueLink.enqueue("five");
+		myQueueLink.enqueue("six");
+		assertEquals("three", myQueueLink.front());
+		myQueueLink.dequeue();
+		assertEquals("four", myQueueLink.front());
+		myQueueLink.dequeue();
+		myQueueLink.dequeue();
+		myQueueLink.dequeue();
+		assertNull(myQueueLink.front());
+	}
 }
